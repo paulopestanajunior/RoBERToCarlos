@@ -88,7 +88,7 @@ sentence = st.text_input('Escreva aqui seu depoimento: ')
 btn_predict = st.button("Descubra se chorou ou se sorriu!")
 
 # verifica se o botão foi acionado
-if btn_predict and sentence:
+if btn_predict or sentence:
   # Pre-process input
   sentence = clean_str(sentence)
   tokenize_words = tokenizer.tokenize(sentence)
