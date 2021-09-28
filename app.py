@@ -24,8 +24,6 @@ if stream is not None:
     #st.info(f'trying to load model from tmp dir {model_dir}...')
     model = load_model(model_dir,  compile=False)
 
-def load_models():
-	return load_model('LSTM.zip', compile=False) 
 
 def load_tokenizer():
 	return BertTokenizer.from_pretrained('neuralmind/bert-base-portuguese-cased') 
@@ -61,7 +59,7 @@ def clean_str(string):
 
     return string.strip().lower()
 
-#model = load_models()
+
 tokenizer = load_tokenizer()
 
 st.image("berto.png")
@@ -92,7 +90,7 @@ btn_predict = st.button("Descubra se chorou ou se sorriu!")
 # verifica se o botão foi acionado
 if btn_predict and sentence:
   # Pre-process input
-
+  sentence = clean_str(sentence)
   tokenize_words = tokenizer.tokenize(sentence)
   tokenize_words = tokenizer.encode(tokenize_words, return_tensors='pt')
   tokenize_words = pad_sequences(tokenize_words, maxlen=128, padding='post', truncating='post') 
